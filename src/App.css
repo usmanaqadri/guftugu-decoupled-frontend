@@ -1,0 +1,217 @@
+.App {
+  width: 80vw;
+  margin: 0 auto;
+}
+
+.logo {
+  margin-left: 10px;
+  margin-right: auto; 
+}
+
+.nav-links > * {
+  margin: 0 20px;
+}
+
+.my-navbar {
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  text-align: center;
+  background-color: #eae0e0;
+  box-shadow: 10px 5px 5px #aa9191;
+}
+
+.group-grid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.group-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+  padding: 0;
+  margin: 0;
+}
+
+section{
+  margin: 5% 25%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+section header {
+  text-align: left;
+}
+
+.program-board {
+  display: flex;
+  justify-content: space-around;
+  align-items: baseline;
+  width: 100vw;
+}
+
+.my-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 30px
+}
+
+.card-desc {
+  flex-grow: 1;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.register-form > * {
+  margin: 20px auto
+}
+
+button {
+  background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+  transition-duration: 0.4s;
+  color: white;
+  background-color: #008cba;
+  border-radius: 5px;
+  border: solid 1px #008cba;
+  padding: 7px 20px;
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: white;
+  color: #008cba;
+  border: solid 1px #008cba;
+}
+
+.secondary-button {
+  background-color: #f56161;
+  border: solid 1px #f56161;
+}
+
+.secondary-button:hover {
+  background-color: white; 
+  color: #f56161;
+  border: solid 1px #f56161;
+}
+
+.tertiary-button {
+  background-color: #aaaaaa;
+  border: solid 1px #aaaaaa;
+}
+
+.tertiary-button:hover {
+  background-color: white; 
+  color: #aaaaaa;
+  border: solid 1px #aaaaaa;
+}
+
+.container {
+  position: relative;
+  width: 400px;
+}
+
+.image {
+  
+  width: 100%;
+  
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  color: white;
+  text-shadow: 2px 2px #000000;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  transition: 0.5s;
+}
+
+.container:hover .overlay {
+  opacity: 1;
+  backdrop-filter: blur(10px);
+}
+
+.form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.form-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+}
+
+.close-button {
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 5px;
+}
+
+.close-button:hover {
+  cursor: pointer;
+  transition: 0.5s ease;
+  border: 1px solid black;
+  border-radius: 5px;
+  color: #979797;
+}
+
+.form-row {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0.5em;
+}
+
+.form-row > label {
+  padding: .5em 1em .5em 0;
+  flex: 1;
+}
+
+.form-row > input {
+  flex: 2;
+}
+
+.event-rsvp {
+  display: flex;
+  align-items: center;
+}
+
+.event-rsvp p {
+  margin-right: 20px;
+}
