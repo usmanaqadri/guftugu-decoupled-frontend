@@ -57,7 +57,7 @@ function Navbar() {
     const type = e.target.id.split("-")[0];
 
     try {
-      fetch(`http://localhost:3009/${type}`, {
+      fetch(`${process.env.REACT_APP_API_SERVER}/${type}`, {
         method: "POST",
         body: JSON.stringify({ ...loginInfo }),
         headers: {

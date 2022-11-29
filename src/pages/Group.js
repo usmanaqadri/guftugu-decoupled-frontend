@@ -33,7 +33,7 @@ function Group() {
   });
   const { id } = useParams();
   useEffect(() => {
-    fetch(`http://localhost:3009/group/${id}`)
+    fetch(`${process.env.REACT_APP_API_SERVER}/group/${id}`)
       .then((res) => res.json())
       .then((data) => setGroupInfo(data.foundGroup));
   }, [id]);
@@ -56,7 +56,7 @@ function Group() {
     const reqBody = Object.fromEntries(
       Object.entries(updatedGroupInfo).filter(([key, value]) => value != "")
     );
-    fetch(`http://localhost:3009/group/${id}`, {
+    fetch(`${process.env.REACT_APP_API_SERVER}/group/${id}`, {
       method: "PUT",
       body: JSON.stringify({ ...reqBody }),
       headers: {

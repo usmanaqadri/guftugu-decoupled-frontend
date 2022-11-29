@@ -4,7 +4,7 @@ import Card from "../components/Card";
 function Groups() {
   const [groups, setGroups] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:3009/group/")
+    fetch(`${process.env.REACT_APP_API_SERVER}/group/`)
       .then((res) => res.json())
       .then((data) => setGroups([...data.group]));
   }, []);

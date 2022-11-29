@@ -38,12 +38,12 @@ function App() {
 
   useEffect(() => {
     try {
-      fetch(`http://localhost:3009/user/${user.user}`)
+      fetch(`${process.env.REACT_APP_API_SERVER}/user/${user.user}`)
         .then((res) => res.json())
         .then((data) => {
           const myGroups = data.foundUser.myGroups;
           for (const group of myGroups) {
-            fetch(`http://localhost:3009/group/${group}`)
+            fetch(`${process.env.REACT_APP_API_SERVER}/group/${group}`)
               .then((res) => res.json())
               .then((data) => {
                 setGroupList((prevState) => {
@@ -61,7 +61,7 @@ function App() {
           }
           const myEvents = data.foundUser.myEvents;
           for (const event of myEvents) {
-            fetch(`http://localhost:3009/event/${event}`)
+            fetch(`${process.env.REACT_APP_API_SERVER}/event/${event}`)
               .then((res) => res.json())
               .then((data) => {
                 setEventList((prevState) => {

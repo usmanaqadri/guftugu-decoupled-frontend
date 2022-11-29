@@ -8,14 +8,14 @@ function Event() {
   const { user, setUser } = useContext(UserContext);
   const { id } = useParams();
   useEffect(() => {
-    fetch(`http://localhost:3009/event/${id}`)
+    fetch(`${process.env.REACT_APP_API_SERVER}/event/${id}`)
       .then((res) => res.json())
       .then((data) => setEventInfo(data.foundEvent));
   }, [id]);
 
   const joinEvent = () => {
     const reqBody = [...user.myEvents, id];
-    fetch(`http://localhost:3009/user/${user.user}`, {
+    fetch(`${process.env.REACT_APP_API_SERVER}/user/${user.user}`, {
       method: "PUT",
       body: JSON.stringify({ myEvents: reqBody }),
       headers: {
@@ -40,7 +40,7 @@ function Event() {
   };
   const leaveEvent = () => {
     const reqBody = user.myEvents.filter((event) => event !== id);
-    fetch(`http://localhost:3009/user/${user.user}`, {
+    fetch(`${process.env.REACT_APP_API_SERVER}/user/${user.user}`, {
       method: "PUT",
       body: JSON.stringify({ myEvents: reqBody }),
       headers: {
