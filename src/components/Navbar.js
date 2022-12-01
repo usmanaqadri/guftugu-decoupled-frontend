@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import Modal from "react-modal";
 import { UserContext } from "../UserContext";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 
 function Navbar() {
@@ -73,7 +73,9 @@ function Navbar() {
             window.location.reload();
           }
         });
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleLogout = () => {
@@ -97,30 +99,41 @@ function Navbar() {
                 onClick={() => closeModal()}
               />
             </header>
-            <form
-              className="register-form"
-              id="signin-form"
-              onSubmit={handleSubmit}
-            >
-              <input
-                type="email"
-                name={"email"}
-                placeholder={"Email"}
-                id={"email"}
-                onChange={handleChange}
-                value={loginInfo.email}
-                required
-              />
-              <input
-                type="password"
-                name={"password"}
-                placeholder={"Password"}
-                id={"password"}
-                onChange={handleChange}
-                value={loginInfo.password}
-                required
-              />
-              <button>Login</button>
+            <form id="signin-form" onSubmit={handleSubmit}>
+              <div className="form-row">
+                <label htmlFor="email">Email:</label>
+
+                <input
+                  type="email"
+                  name={"email"}
+                  placeholder={"Email"}
+                  id={"email"}
+                  onChange={handleChange}
+                  value={loginInfo.email}
+                  required
+                />
+              </div>
+              <div className="form-row">
+                <label htmlFor="password">Password:</label>
+                <input
+                  type="password"
+                  name={"password"}
+                  placeholder={"Password"}
+                  id={"password"}
+                  onChange={handleChange}
+                  value={loginInfo.password}
+                  required
+                />
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  marginTop: "10px",
+                }}
+              >
+                <button>Login</button>
+              </div>
             </form>
             <div className="form-footer">
               <p>New to Guftugu?</p>
@@ -146,47 +159,61 @@ function Navbar() {
               By continuing, you agree to our User Agreement and Privacy Policy.
             </p>
             <form
-              className="register-form"
+              className="form-large"
               id="register-form"
               onSubmit={handleSubmit}
             >
-              <input
-                type="text"
-                name={"name"}
-                placeholder={"Name"}
-                id={"name"}
-                onChange={handleChange}
-                value={loginInfo.name}
-                required
-              />
-              <input
-                type="text"
-                name={"username"}
-                placeholder={"Username"}
-                id={"username"}
-                onChange={handleChange}
-                value={loginInfo.username}
-                required
-              />
-              <input
-                type="email"
-                name={"email"}
-                placeholder={"Email"}
-                id={"email"}
-                onChange={handleChange}
-                value={loginInfo.email}
-                required
-              />
-              <input
-                type="password"
-                name={"password"}
-                placeholder={"Password"}
-                id={"password"}
-                onChange={handleChange}
-                value={loginInfo.password}
-                required
-              />
-              <button>Sign Up</button>
+              <div className="form-row">
+                <label htmlFor="name">Name:</label>
+                <input
+                  type="text"
+                  name={"name"}
+                  placeholder={"Name"}
+                  id={"name"}
+                  onChange={handleChange}
+                  value={loginInfo.name}
+                  required
+                />
+              </div>
+              <div className="form-row">
+                <label htmlFor="username">Username:</label>
+                <input
+                  type="text"
+                  name={"username"}
+                  placeholder={"Username"}
+                  id={"username"}
+                  onChange={handleChange}
+                  value={loginInfo.username}
+                  required
+                />
+              </div>
+              <div className="form-row">
+                <label htmlFor="email">Email:</label>
+                <input
+                  type="email"
+                  name={"email"}
+                  placeholder={"Email"}
+                  id={"email"}
+                  onChange={handleChange}
+                  value={loginInfo.email}
+                  required
+                />
+              </div>
+              <div className="form-row">
+                <label htmlFor="password">Password:</label>
+                <input
+                  type="password"
+                  name={"password"}
+                  placeholder={"Password"}
+                  id={"password"}
+                  onChange={handleChange}
+                  value={loginInfo.password}
+                  required
+                />
+              </div>
+              <div className="form-row">
+                <button>Sign Up</button>
+              </div>
             </form>
           </>
         )}
@@ -196,8 +223,8 @@ function Navbar() {
           <h1>گفتگو</h1>
         </Link>
         <div className="nav-links">
+          <Link to="/">Home</Link>
           <Link to="/about-us">About</Link>
-          <Link to="/programs">Programs</Link>
           <Link to="/group">Groups</Link>
           <Link to="/event">Events</Link>
           <Link to="/get-involved">Get Involved</Link>

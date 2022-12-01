@@ -1,12 +1,9 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from "../UserContext";
 
 function Card(props) {
-  const [isMember, setIsMember] = useState(false);
   const { user } = useContext(UserContext);
-  console.log("here is the user", user);
-  const handleJoin = () => {};
   return (
     <div className="my-card">
       <Link to={props.link}>
@@ -16,15 +13,17 @@ function Card(props) {
             <h3>{props.title}</h3>
             <p className="card-desc">{props.desc}</p>
             {user &&
-              (user.myGroups.includes(props.cardId) ? (
+              (user[`my${props.type}s`].includes(props.cardId) ? (
                 <button
                   className="secondary-button"
                   style={{ marginBottom: "10px" }}
                 >
-                  Leave Group
+                  Leave {props.type}
                 </button>
               ) : (
-                <button style={{ marginBottom: "10px" }}>Join Group</button>
+                <button style={{ marginBottom: "10px" }}>
+                  Join {props.type}
+                </button>
               ))}
           </div>
         </div>

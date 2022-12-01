@@ -2,7 +2,6 @@ import React, { useState, useMemo } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AboutUs from "./pages/AboutUs";
 import GetInvolved from "./pages/GetInvolved";
-import Programs from "./pages/Programs";
 import Group from "./pages/Group";
 import "./index.css";
 import App from "./App";
@@ -24,7 +23,6 @@ function AppRouter() {
           <Route path="/group" element={<Groups />} />
           <Route path="/event" element={<Events />} />
           <Route path="/about-us" element={<AboutUs />} />
-          <Route path="/programs" element={<Programs />} />
           <Route path="/get-involved" element={<GetInvolved />} />
           <Route path="/group/:id" element={<Group />} />
           <Route path="/event/:id" element={<Event />} />

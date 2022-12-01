@@ -8,8 +8,8 @@ function GetInvolved() {
           <h2>Get Involved</h2>
         </header>
         <p>
-          Have an idea for something you want to see in Urdu Khana, or want to
-          volunteer? Contact us
+          Have an idea for something you want to see in Guftugu, or want to
+          volunteer? Contact me at usmanaqadri@gmail.com
         </p>
       </section>
     </div>

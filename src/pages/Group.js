@@ -1,8 +1,9 @@
 import React, { useEffect, useState, useContext } from "react";
 import Modal from "react-modal";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { UserContext } from "../UserContext";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
+import CheckIcon from "@mui/icons-material/Check";
 
 function Group() {
   const customStyles = {
@@ -24,7 +25,7 @@ function Group() {
 
   Modal.setAppElement("#root");
   const [modalIsOpen, setModalOpen] = useState(false);
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
   const [groupInfo, setGroupInfo] = useState({});
   const [updatedGroupInfo, setUpdatedGroupInfo] = useState({
     desc: "",
@@ -32,6 +33,8 @@ function Group() {
     name: "",
   });
   const { id } = useParams();
+  const navigate = useNavigate();
+
   useEffect(() => {
     fetch(`${process.env.REACT_APP_API_SERVER}/group/${id}`)
       .then((res) => res.json())
@@ -54,7 +57,7 @@ function Group() {
   const handleUpdate = (e) => {
     e.preventDefault();
     const reqBody = Object.fromEntries(
-      Object.entries(updatedGroupInfo).filter(([key, value]) => value != "")
+      Object.entries(updatedGroupInfo).filter(([key, value]) => value !== "")
     );
     fetch(`${process.env.REACT_APP_API_SERVER}/group/${id}`, {
       method: "PUT",
@@ -72,6 +75,69 @@ function Group() {
           name: "",
         });
         closeModal();
+      });
+  };
+
+  const handleJoin = () => {
+    const reqBody = [...user.myGroups, id];
+    fetch(`${process.env.REACT_APP_API_SERVER}/user/${user.user}`, {
+      method: "PUT",
+      body: JSON.stringify({ myGroups: reqBody }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        if (data) {
+          setUser({
+            user: data._id,
+            name: data.name,
+            myEvents: data.myEvents,
+            myGroups: data.myGroups,
+            isAdmin: data.isAdmin,
+            loggedIn: true,
+          });
+        }
+      });
+  };
+
+  const handleLeave = async () => {
+    const reqBody = user.myGroups.filter((group) => group !== id);
+    fetch(`${process.env.REACT_APP_API_SERVER}/user/${user.user}`, {
+      method: "PUT",
+      body: JSON.stringify({ myGroups: reqBody }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        if (data) {
+          setUser({
+            user: data._id,
+            name: data.name,
+            myEvents: data.myEvents,
+            myGroups: data.myGroups,
+            isAdmin: data.isAdmin,
+            loggedIn: true,
+          });
+        }
+      });
+  };
+
+  const handleDelete = async () => {
+    await handleLeave();
+    fetch(`${process.env.REACT_APP_API_SERVER}/group/${id}`, {
+      method: "DELETE",
+    })
+      .then((response) => response.json())
+      .then((res) => {
+        navigate("/group");
       });
   };
 
@@ -134,14 +200,44 @@ function Group() {
         <img src={groupInfo.img} alt={groupInfo.name} width="300px" />
         <p>{groupInfo.desc}</p>
         {user && user.isAdmin && (
-          <button onClick={() => openModal()} className="tertiary-button">
-            Edit
-          </button>
+          <div>
+            <button
+              style={{ margin: "10px" }}
+              onClick={() => openModal()}
+              className="tertiary-button"
+            >
+              Edit
+            </button>
+            <button
+              style={{ margin: "10px" }}
+              onClick={handleDelete}
+              className="secondary-button"
+            >
+              Delete
+            </button>
+          </div>
+        )}
+        {user && (
+          <div className="event-rsvp">
+            {!user.myGroups.includes(id) ? (
+              <button onClick={handleJoin}>Join Group</button>
+            ) : (
+              <>
+                <p>
+                  You are now part of the group{" "}
+                  <CheckIcon sx={{ color: "green" }} />
+                </p>
+                <button className="secondary-button" onClick={handleLeave}>
+                  Leave Group
+                </button>
+              </>
+            )}
+          </div>
         )}
       </div>
-      <div>
+      {/* <div>
         <h2>Upcoming Events:</h2>
-      </div>
+      </div> */}
     </>
   );
 }

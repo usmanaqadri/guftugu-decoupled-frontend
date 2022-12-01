@@ -5,13 +5,15 @@ function AboutUs() {
     <div>
       <section>
         <header>
-          <h2>About</h2>
+          <h1 style={{ fontSize: "40px" }}>گفتگو</h1>
         </header>
         <p>
-          Urdu Khana is a community for elderly Pakistani adults to meet others
-          all over the world, join groups based on their interests, meaningfully
-          connect with Pakistani youth, and enhance their lives.{" "}
+          Guftugu—the Urdu word for "conversation"—is a community for elderly
+          Desi adults to meet others all over the world, join groups based on
+          their interests, meaningfully connect with diasporic youth, and
+          enhance their lives.{" "}
         </p>
+        <p>Get started and sign up!</p>
       </section>
     </div>
   );
